@@ -13,7 +13,17 @@
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
     
-    <Grid>
+    <StackPanel>
+        <Label Content="Smart Home" HorizontalAlignment="Center" FontSize="30"/>
         
-    </Grid>
+        <StackPanel Orientation="Horizontal">
+            <ListBox>
+                
+            </ListBox>
+            
+            <TabControl>
+                <Image></Image>
+            </TabControl>
+        </StackPanel>
+    </StackPanel>
 </Window>
