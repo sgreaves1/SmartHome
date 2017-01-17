@@ -25,7 +25,7 @@ namespace SmartHome.ViewModel
             DataReader reader = new DataReader();
             reader.ModelReady += ModelReady;
 
-            reader.ReadXML();
+            reader.ReadXml();
         }
 
         public ObservableCollection<FloorModel> Floors

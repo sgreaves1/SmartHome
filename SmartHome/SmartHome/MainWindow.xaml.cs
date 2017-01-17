@@ -1,6 +1,4 @@
-﻿using System.Windows;
-
-namespace SmartHome
+﻿namespace SmartHome
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

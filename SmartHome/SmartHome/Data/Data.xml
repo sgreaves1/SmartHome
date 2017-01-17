@@ -1,4 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Floors>
-  <Floor Name="Ground Floor"/>
+  <Floor Name="Ground Floor" ImageName="Images\Floor1.jpg"/>
+  <Floor Name="First Floor"/>
+  <Floor Name="Attic"/>
 </Floors>

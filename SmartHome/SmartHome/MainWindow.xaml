@@ -13,14 +13,25 @@
         <viewModel:MainWindowViewModel/>
     </Window.DataContext>
     
+    <Window.Resources>
+        <DataTemplate x:Key="TemplateForHeader">
+            <TextBlock Text="{Binding Name}"></TextBlock>
+        </DataTemplate>
+
+        <DataTemplate x:Key="TemplateForContent">
+            <Image Source="{Binding ImageName}"/>
+        </DataTemplate>
+    </Window.Resources>
+    
     <StackPanel>
         <Label Content="Smart Home" HorizontalAlignment="Center" FontSize="30"/>
         
         <StackPanel Orientation="Horizontal">
             <ListBox ItemsSource="{Binding Path=Floors}" DisplayMemberPath="Name"/>
             
-            <TabControl>
-                <Image></Image>
+            <TabControl ItemsSource="{Binding Path=Floors}"
+                        ItemTemplate="{StaticResource TemplateForHeader}"
+                        ContentTemplate="{StaticResource TemplateForContent}">
             </TabControl>
         </StackPanel>
     </StackPanel>

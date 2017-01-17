@@ -6,7 +6,7 @@ namespace SmartHome.XMLReader
 {
     public class DataReader
     {
-        public void ReadXML()
+        public void ReadXml()
         {
             XmlReader xmlReader = XmlReader.Create("...\\...\\Data\\Data.xml");
             while (xmlReader.Read())
@@ -17,6 +17,7 @@ namespace SmartHome.XMLReader
                     {
                         FloorModel floor = new FloorModel();
                         floor.Name = xmlReader.GetAttribute("Name");
+                        floor.ImageName = xmlReader.GetAttribute("ImageName");
 
                         ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                     }
