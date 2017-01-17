@@ -106,9 +106,9 @@
     <Content Include="Data\Data.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Images\Floor1.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Resource Include="Images\Attic.png" />
+    <Resource Include="Images\FirstFloor.png" />
+    <Resource Include="Images\GroundFloor.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
