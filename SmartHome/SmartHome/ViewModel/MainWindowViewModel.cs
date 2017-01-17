@@ -1,4 +1,4 @@
-﻿using System.Xml;
+﻿using SmartHome.XMLReader;
 
 namespace SmartHome.ViewModel
 {
@@ -11,17 +11,7 @@ namespace SmartHome.ViewModel
 
         void ReadXML()
         {
-            XmlReader xmlReader = XmlReader.Create("...\\...\\Data\\Data.xml");
-            while (xmlReader.Read())
-            {
-                if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Floor"))
-                {
-                    if (xmlReader.HasAttributes)
-                    {
-                        string name = xmlReader.GetAttribute("Name");
-                    }
-                }
-            }
+            DataReader reader = new DataReader();
         }
 
     }

@@ -57,8 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="Designer\MainWindowDesignerViewModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\FloorModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="XMLReader\DataReader.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
