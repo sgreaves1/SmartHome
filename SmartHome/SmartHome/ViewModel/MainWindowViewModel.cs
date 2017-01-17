@@ -17,10 +17,10 @@ namespace SmartHome.ViewModel
         public MainWindowViewModel()
         {
             Floors = new ObservableCollection<FloorModel>();
-            ReadXML();
+            ReadXml();
         }
 
-        void ReadXML()
+        void ReadXml()
         {
             DataReader reader = new DataReader();
             reader.ModelReady += ModelReady;
