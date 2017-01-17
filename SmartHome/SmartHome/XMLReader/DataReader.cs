@@ -1,10 +1,12 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
+using SmartHome.Model;
 
 namespace SmartHome.XMLReader
 {
     public class DataReader
     {
-        public DataReader()
+        public void ReadXML()
         {
             XmlReader xmlReader = XmlReader.Create("...\\...\\Data\\Data.xml");
             while (xmlReader.Read())
@@ -13,10 +15,15 @@ namespace SmartHome.XMLReader
                 {
                     if (xmlReader.HasAttributes)
                     {
-                        string name = xmlReader.GetAttribute("Name");
+                        FloorModel floor = new FloorModel();
+                        floor.Name = xmlReader.GetAttribute("Name");
+
+                        ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                     }
                 }
             }
         }
+
+        public EventHandler ModelReady;
     }
 }

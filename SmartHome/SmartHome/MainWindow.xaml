@@ -17,7 +17,7 @@
         <Label Content="Smart Home" HorizontalAlignment="Center" FontSize="30"/>
         
         <StackPanel Orientation="Horizontal">
-            <ListBox>
+            <ListBox ItemsSource="{Binding Path=Floors}" DisplayMemberPath="Name">
                 
             </ListBox>
             
