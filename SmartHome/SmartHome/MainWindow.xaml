@@ -3,9 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SmartHome"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        xmlns:designerViewModel="clr-namespace:SmartHome.Designer"
+        xmlns:viewModel="clr-namespace:SmartHome.ViewModel"
+        Title="MainWindow" Height="350" Width="525"
+        d:DataContext="{d:DesignInstance Type=designerViewModel:MainWindowDesignerViewModel, IsDesignTimeCreatable=True}">
+    
+    <Window.DataContext>
+        <viewModel:MainWindowViewModel/>
+    </Window.DataContext>
+    
     <Grid>
         
     </Grid>
