@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using SmartHome.Model;
 using SmartHome.XMLReader;
+using TextLoggingPackage;
 
 namespace SmartHome.ViewModel
 {
@@ -11,11 +12,19 @@ namespace SmartHome.ViewModel
 
         private void ModelReady(object sender, EventArgs eventArgs)
         {
+            Logger.Log("Floor read from xml file by the name of " + ((DataReaderEventArgs)eventArgs).Floor.Name, "Smart Home", LoggingLevel.Trace);
+
             Floors.Add(((DataReaderEventArgs)eventArgs).Floor);
         }
 
         public MainWindowViewModel()
         {
+            Logger.ApplicationLoggingLevel = LoggingLevel.Trace;
+
+            Logger.Log("*********************************", "Smart Home", LoggingLevel.Critical);
+            Logger.Log("*********************************", "Smart Home", LoggingLevel.Critical);
+            Logger.Log("App Started.", "Smart Home", LoggingLevel.Trace);
+
             Floors = new ObservableCollection<FloorModel>();
             ReadXml();
         }
