@@ -19,7 +19,7 @@ namespace SmartHome.XMLReader
                         FloorModel floor = new FloorModel();
                         floor.Name = xmlReader.GetAttribute("Name");
                         floor.ImageName = Directory.GetCurrentDirectory() + "\\" + xmlReader.GetAttribute("ImageName");
-
+                        
                         ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                     }
                 }

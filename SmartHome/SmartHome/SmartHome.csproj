@@ -62,6 +62,7 @@
     <Compile Include="Designer\MainWindowDesignerViewModel.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\FloorModel.cs" />
+    <Compile Include="Model\LightModel.cs" />
     <Compile Include="UserControl\MapUserControl.xaml.cs">
       <DependentUpon>MapUserControl.xaml</DependentUpon>
     </Compile>
