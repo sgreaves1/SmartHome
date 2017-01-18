@@ -6,11 +6,12 @@
         mc:Ignorable="d"
         xmlns:designerViewModel="clr-namespace:SmartHome.Designer"
         xmlns:viewModel="clr-namespace:SmartHome.ViewModel"
+        xmlns:userControl="clr-namespace:SmartHome.UserControl"
         Title="MainWindow" Height="350" Width="525"
         Background="Black"
-        d:DataContext="{d:DesignInstance Type=designerViewModel:MainWindowDesignerViewModel, IsDesignTimeCreatable=True}"
-    WindowStyle="None" ResizeMode="NoResize"  
-    WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        d:DataContext="{d:DesignInstance Type=designerViewModel:MainWindowDesignerViewModel, IsDesignTimeCreatable=True}">
+    <!--WindowStyle="None" ResizeMode="NoResize"  
+    WindowStartupLocation="CenterScreen" WindowState="Maximized">-->
     
     <Window.DataContext>
         <viewModel:MainWindowViewModel/>
@@ -18,7 +19,7 @@
     
     <Window.Resources>
         <DataTemplate x:Key="TemplateForContent">
-            <Image Source="{Binding ImageName}"/>
+            <userControl:MapUserControl FloorModel="{Binding}"/>
         </DataTemplate>
     </Window.Resources>
     

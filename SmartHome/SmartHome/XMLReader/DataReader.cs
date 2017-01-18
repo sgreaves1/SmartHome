@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Xml;
 using SmartHome.Model;
 
@@ -17,7 +18,7 @@ namespace SmartHome.XMLReader
                     {
                         FloorModel floor = new FloorModel();
                         floor.Name = xmlReader.GetAttribute("Name");
-                        floor.ImageName = xmlReader.GetAttribute("ImageName");
+                        floor.ImageName = Directory.GetCurrentDirectory() + "\\" + xmlReader.GetAttribute("ImageName");
 
                         ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                     }
