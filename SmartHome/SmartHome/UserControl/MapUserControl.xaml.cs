@@ -79,6 +79,7 @@ namespace SmartHome.UserControl
         private void LightButtonClickExecuteCommand(object parameter)
         {
             ((LightModel) parameter).IsOn = !((LightModel) parameter).IsOn;
+            UpdateLights();
         }
 
         public void RemoveLights()
