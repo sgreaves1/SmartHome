@@ -30,6 +30,13 @@ namespace SmartHome.XMLReader
                         {
                             LightModel light = new LightModel();
                             light.Name = xmlReader.GetAttribute("Name");
+                            string X = xmlReader.GetAttribute("X");
+                            string Y = xmlReader.GetAttribute("Y");
+                            if (X != null)
+                                light.X = int.Parse(X);
+                            if (Y != null)
+                                light.Y = int.Parse(Y);
+
                             floor.Lights.Add(light);
                         }
                     }

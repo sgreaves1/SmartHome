@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Floors>
   <Floor Name="Ground Floor" ImageName="Images\GroundFloor.png">
-    <Light Name="Front Room" x="10" y="10"/>
+    <Light Name="Front Room" X="10" Y="10"/>
   </Floor>
   <Floor Name="First Floor" ImageName="Images\FirstFloor.png"/>
   <Floor Name="Attic" ImageName="Images\Attic.png"/>
