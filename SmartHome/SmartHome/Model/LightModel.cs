@@ -6,6 +6,12 @@ namespace SmartHome.Model
         private string _name;
         private int _x;
         private int _y;
+        private bool _isOn;
+
+        public LightModel()
+        {
+            IsOn = false;
+        }
 
         public string Name
         {
@@ -33,6 +39,16 @@ namespace SmartHome.Model
             set
             {
                 _y = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsOn
+        {
+            get { return _isOn; }
+            set
+            {
+                _isOn = value;
                 OnPropertyChanged();
             }
         }

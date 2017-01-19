@@ -7,7 +7,7 @@
              d:DesignHeight="300" d:DesignWidth="300"
              x:Name="Root">
     <Grid>
-        <Canvas Width="800" Height="700">
+        <Canvas Width="800" Height="700" x:Name="FloorCanvas">
             <Image Source="{Binding ElementName=Root, Path=FloorModel.ImageName}"/>
         </Canvas>
     </Grid>

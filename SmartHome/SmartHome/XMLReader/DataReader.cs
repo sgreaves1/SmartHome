@@ -28,20 +28,20 @@ namespace SmartHome.XMLReader
 
                         if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Light"))
                         {
-                            LightModel light = new LightModel();
-                            light.Name = xmlReader.GetAttribute("Name");
-                            string X = xmlReader.GetAttribute("X");
-                            string Y = xmlReader.GetAttribute("Y");
-                            if (X != null)
-                                light.X = int.Parse(X);
-                            if (Y != null)
-                                light.Y = int.Parse(Y);
+                            LightModel light = new LightModel {Name = xmlReader.GetAttribute("Name")};
+
+                            string x = xmlReader.GetAttribute("X");
+                            string y = xmlReader.GetAttribute("Y");
+                            if (x != null)
+                                light.X = int.Parse(x);
+                            if (y != null)
+                                light.Y = int.Parse(y);
 
                             floor.Lights.Add(light);
                         }
                     }
 
-                    ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
+                    ModelReady?.Invoke(null, new DataReaderEventArgs { Floor = floor });
                 }
             }
         }
