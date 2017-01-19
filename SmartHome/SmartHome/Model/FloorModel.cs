@@ -1,9 +1,13 @@
-﻿namespace SmartHome.Model
+﻿using System.Collections.ObjectModel;
+
+namespace SmartHome.Model
 {
     public class FloorModel : BaseModel
     {
         private string _name;
         private string _imageName;
+
+        private ObservableCollection<LightModel> _lights = new ObservableCollection<LightModel>(); 
 
         public string Name
         {
@@ -24,5 +28,15 @@
                 OnPropertyChanged();
             }
         }
+
+        public ObservableCollection<LightModel> Lights
+        {
+            get { return _lights; }
+            set
+            {
+                _lights = value;
+                OnPropertyChanged();
+            }
+        } 
     }
 }

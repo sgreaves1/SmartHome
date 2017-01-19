@@ -9,19 +9,32 @@ namespace SmartHome.XMLReader
     {
         public void ReadXml()
         {
-            XmlReader xmlReader = XmlReader.Create("...\\...\\Data\\Data.xml");
+            XmlReader xmlReader = XmlReader.Create("...\\...\\Data\\Data.xml", new XmlReaderSettings {IgnoreWhitespace = true});
             while (xmlReader.Read())
             {
                 if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Floor"))
                 {
+                    FloorModel floor = new FloorModel();
+
                     if (xmlReader.HasAttributes)
                     {
-                        FloorModel floor = new FloorModel();
                         floor.Name = xmlReader.GetAttribute("Name");
                         floor.ImageName = Directory.GetCurrentDirectory() + "\\" + xmlReader.GetAttribute("ImageName");
-                        
-                        ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                     }
+
+                    while (xmlReader.NodeType != XmlNodeType.EndElement)
+                    {
+                        xmlReader.Read();
+
+                        if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Light"))
+                        {
+                            LightModel light = new LightModel();
+                            light.Name = xmlReader.GetAttribute("Name");
+                            floor.Lights.Add(light);
+                        }
+                    }
+
+                    ModelReady?.Invoke(null, new DataReaderEventArgs() { Floor = floor });
                 }
             }
         }
