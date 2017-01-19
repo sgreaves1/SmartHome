@@ -21,7 +21,7 @@ namespace SmartHome.XMLReader
                         floor.Name = xmlReader.GetAttribute("Name");
                         floor.ImageName = Directory.GetCurrentDirectory() + "\\" + xmlReader.GetAttribute("ImageName");
                     }
-
+                    
                     while (xmlReader.NodeType != XmlNodeType.EndElement)
                     {
                         xmlReader.Read();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -42,13 +43,16 @@ namespace SmartHome.UserControl
 
         public void UpdateLights()
         {
-            //RemoveLights();
+            RemoveLights();
             if (FloorModel != null)
             {
                 foreach (var lightModel in FloorModel.Lights)
                 {
                     Image img = new Image();
-                    img.Source = new BitmapImage(new Uri(@"\Images\LightOff.png", UriKind.Relative));
+
+                    string uri = lightModel.IsOn ? @"\Images\LightOn.png" : @"\Images\LightOff.png";
+
+                    img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
 
                     StackPanel stackPnl = new StackPanel();
                     stackPnl.Orientation = Orientation.Horizontal;
@@ -64,6 +68,15 @@ namespace SmartHome.UserControl
                     Canvas.SetLeft(b, lightModel.X);
                     Canvas.SetTop(b, lightModel.Y);
                 }
+            }
+        }
+
+        public void RemoveLights()
+        {
+            var buttons = FloorCanvas.Children.OfType<Button>().ToList();
+            foreach (var button in buttons)
+            {
+                FloorCanvas.Children.Remove(button);
             }
         }
     }
