@@ -3,7 +3,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using SmartHome.Command;
 using SmartHome.Model;
+using XamlIcons.Commands;
 
 namespace SmartHome.UserControl
 {
@@ -58,17 +60,25 @@ namespace SmartHome.UserControl
                     stackPnl.Orientation = Orientation.Horizontal;
                     stackPnl.Children.Add(img);
 
-                    Button b = new Button();
-                    FloorCanvas.Children.Add(b);
-                    b.Visibility = Visibility.Visible;
-                    b.Content = stackPnl;
-                    b.Width = 50;
-                    b.Height = 50;
-                    b.ToolTip = lightModel.Name;
-                    Canvas.SetLeft(b, lightModel.X);
-                    Canvas.SetTop(b, lightModel.Y);
+                    Button lightButton = new Button();
+                    FloorCanvas.Children.Add(lightButton);
+                    lightButton.Visibility = Visibility.Visible;
+                    lightButton.Content = stackPnl;
+                    lightButton.Width = 50;
+                    lightButton.Height = 50;
+                    lightButton.ToolTip = lightModel.Name;
+                    lightButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
+                    lightButton.CommandParameter = lightModel;
+
+                    Canvas.SetLeft(lightButton, lightModel.X);
+                    Canvas.SetTop(lightButton, lightModel.Y);
                 }
             }
+        }
+
+        private void LightButtonClickExecuteCommand(object parameter)
+        {
+            ((LightModel) parameter).IsOn = !((LightModel) parameter).IsOn;
         }
 
         public void RemoveLights()
