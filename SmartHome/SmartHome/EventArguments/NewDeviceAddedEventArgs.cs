@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using SmartHome.@enum;
 
-namespace SmartHome.EventArgs
+namespace SmartHome.EventArguments
 {
     public class NewDeviceAddedEventArgs : RoutedEventArgs
     {

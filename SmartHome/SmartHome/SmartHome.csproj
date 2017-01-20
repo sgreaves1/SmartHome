@@ -69,7 +69,7 @@
     <Compile Include="Command\RelayCommand.cs" />
     <Compile Include="Designer\MainWindowDesignerViewModel.cs" />
     <Compile Include="enum\IconTypes.cs" />
-    <Compile Include="EventArgs\NewDeviceAddedEventArgs.cs" />
+    <Compile Include="EventArguments\NewDeviceAddedEventArgs.cs" />
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\FloorModel.cs" />
     <Compile Include="Model\LightModel.cs" />
@@ -161,6 +161,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\lightOn.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\radio.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

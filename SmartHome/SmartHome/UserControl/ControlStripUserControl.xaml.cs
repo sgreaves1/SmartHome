@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using SmartHome.EventArgs;
+using SmartHome.EventArguments;
 using SmartHome.View;
 
 namespace SmartHome.UserControl
