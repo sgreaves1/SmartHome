@@ -37,6 +37,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -53,6 +55,10 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="XamlIconLibrary, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XamlIcons.1.0.6\lib\XamlIconLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -65,6 +71,9 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\FloorModel.cs" />
     <Compile Include="Model\LightModel.cs" />
+    <Compile Include="UserControl\ControlStripUserControl.xaml.cs">
+      <DependentUpon>ControlStripUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\MapUserControl.xaml.cs">
       <DependentUpon>MapUserControl.xaml</DependentUpon>
     </Compile>
@@ -85,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Resources\ResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\ControlStripUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

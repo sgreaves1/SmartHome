@@ -33,6 +33,8 @@
                         ItemTemplate="{StaticResource TemplateForHeader}"
                         ContentTemplate="{StaticResource TemplateForContent}"
                         Background="Black"/>
+            
+            <userControl:ControlStripUserControl/>
         </StackPanel>
     </StackPanel>
 </Window>
