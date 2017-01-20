@@ -23,7 +23,7 @@
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="Cancel" Click="CancelButton_OnClick"/>
-            <Button Content="OK"/>
+            <Button Content="OK" Click="OKButton_OnClick"/>
         </StackPanel>
     </StackPanel>
 </Window>

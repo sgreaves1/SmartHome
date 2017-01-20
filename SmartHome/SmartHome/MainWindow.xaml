@@ -34,7 +34,7 @@
                         ContentTemplate="{StaticResource TemplateForContent}"
                         Background="Black"/>
             
-            <userControl:ControlStripUserControl/>
+            <userControl:ControlStripUserControl />
         </StackPanel>
     </StackPanel>
 </Window>

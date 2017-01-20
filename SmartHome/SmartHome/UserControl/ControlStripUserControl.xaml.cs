@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using SmartHome.Command;
+using SmartHome.EventArgs;
 using SmartHome.View;
 
 namespace SmartHome.UserControl
@@ -12,8 +8,10 @@ namespace SmartHome.UserControl
     /// <summary>
     /// Interaction logic for ControlStripUserControl.xaml
     /// </summary>
-    public partial class ControlStripUserControl 
+    public partial class ControlStripUserControl
     {
+        public EventHandler NewDeviceAdded;
+
         public ControlStripUserControl()
         {
             InitializeComponent();
@@ -23,6 +21,11 @@ namespace SmartHome.UserControl
         {
             AddElementWindow window = new AddElementWindow();
             window.ShowDialog();
+
+            if (window.DialogResult == true)
+            {
+                NewDeviceAdded?.Invoke(this, new NewDeviceAddedEventArgs() {Name = window.Name, Ip = window.Ip, Type = window.Type});
+            }
         }
     }
 }
