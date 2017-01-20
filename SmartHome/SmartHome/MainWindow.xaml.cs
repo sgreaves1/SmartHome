@@ -1,4 +1,7 @@
-﻿namespace SmartHome
+﻿using System.Windows;
+using SmartHome.ViewModel;
+
+namespace SmartHome
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

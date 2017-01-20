@@ -10,7 +10,7 @@ namespace SmartHome.UserControl
     /// </summary>
     public partial class ControlStripUserControl
     {
-        public EventHandler NewDeviceAdded;
+        public event RoutedEventHandler NewDeviceAdded;
 
         public ControlStripUserControl()
         {
