@@ -79,6 +79,9 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="View\AddElementWindow.xaml.cs">
+      <DependentUpon>AddElementWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XMLReader\DataReader.cs" />
     <Compile Include="XMLReader\DataReaderEventArgs.cs" />
     <Page Include="MainWindow.xaml">
@@ -102,6 +105,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\MapUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\AddElementWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

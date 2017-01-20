@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using SmartHome.Command;
+using SmartHome.View;
+
 namespace SmartHome.UserControl
 {
     /// <summary>
@@ -13,6 +17,12 @@ namespace SmartHome.UserControl
         public ControlStripUserControl()
         {
             InitializeComponent();
+        }
+
+        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        {
+            AddElementWindow window = new AddElementWindow();
+            window.ShowDialog();
         }
     }
 }
