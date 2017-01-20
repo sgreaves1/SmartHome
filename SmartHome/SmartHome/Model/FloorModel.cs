@@ -8,6 +8,7 @@ namespace SmartHome.Model
         private string _imageName;
 
         private ObservableCollection<LightModel> _lights = new ObservableCollection<LightModel>(); 
+        private ObservableCollection<RadioModel> _radios = new ObservableCollection<RadioModel>();
 
         public string Name
         {
@@ -37,6 +38,16 @@ namespace SmartHome.Model
                 _lights = value;
                 OnPropertyChanged();
             }
-        } 
+        }
+
+        public ObservableCollection<RadioModel> Radios
+        {
+            get { return _radios; }
+            set
+            {
+                _radios = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

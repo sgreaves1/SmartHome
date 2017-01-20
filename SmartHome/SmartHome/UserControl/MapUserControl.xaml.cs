@@ -25,7 +25,9 @@ namespace SmartHome.UserControl
 
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
+            ((MapUserControl)dependencyObject).RemoveDevices();
             ((MapUserControl)dependencyObject).UpdateLights();
+            ((MapUserControl)dependencyObject).UpdateRadios();
         }
 
         public MapUserControl()
@@ -45,7 +47,6 @@ namespace SmartHome.UserControl
 
         public void UpdateLights()
         {
-            RemoveLights();
             if (FloorModel != null)
             {
                 foreach (var lightModel in FloorModel.Lights)
@@ -76,13 +77,45 @@ namespace SmartHome.UserControl
             }
         }
 
+        public void UpdateRadios()
+        {
+            if (FloorModel != null)
+            {
+                foreach (var radioModel in FloorModel.Radios)
+                {
+                    Image img = new Image();
+                    
+                    string uri = @"\Images\Radio.png";
+
+                    img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
+
+                    StackPanel stackPnl = new StackPanel();
+                    stackPnl.Orientation = Orientation.Horizontal;
+                    stackPnl.Children.Add(img);
+
+                    Button radioButton = new Button();
+                    FloorCanvas.Children.Add(radioButton);
+                    radioButton.Visibility = Visibility.Visible;
+                    radioButton.Content = stackPnl;
+                    radioButton.Width = 70;
+                    radioButton.Height = 50;
+                    radioButton.ToolTip = radioModel.Name;
+                    //radioButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
+                    radioButton.CommandParameter = radioButton;
+
+                    Canvas.SetLeft(radioButton, radioModel.X);
+                    Canvas.SetTop(radioButton, radioModel.Y);
+                }
+            }
+        }
+
         private void LightButtonClickExecuteCommand(object parameter)
         {
             ((LightModel) parameter).IsOn = !((LightModel) parameter).IsOn;
             UpdateLights();
         }
 
-        public void RemoveLights()
+        public void RemoveDevices()
         {
             var buttons = FloorCanvas.Children.OfType<Button>().ToList();
             foreach (var button in buttons)

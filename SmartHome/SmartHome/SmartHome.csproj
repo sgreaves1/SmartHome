@@ -73,6 +73,7 @@
     <Compile Include="Model\BaseModel.cs" />
     <Compile Include="Model\FloorModel.cs" />
     <Compile Include="Model\LightModel.cs" />
+    <Compile Include="Model\RadioModel.cs" />
     <Compile Include="UserControl\ControlStripUserControl.xaml.cs">
       <DependentUpon>ControlStripUserControl.xaml</DependentUpon>
     </Compile>

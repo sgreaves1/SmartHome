@@ -39,6 +39,20 @@ namespace SmartHome.XMLReader
 
                             floor.Lights.Add(light);
                         }
+
+                        if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Radio"))
+                        {
+                            RadioModel radio = new RadioModel { Name = xmlReader.GetAttribute("Name") };
+
+                            string x = xmlReader.GetAttribute("X");
+                            string y = xmlReader.GetAttribute("Y");
+                            if (x != null)
+                                radio.X = int.Parse(x);
+                            if (y != null)
+                                radio.Y = int.Parse(y);
+
+                            floor.Radios.Add(radio);
+                        }
                     }
 
                     ModelReady?.Invoke(null, new DataReaderEventArgs { Floor = floor });
