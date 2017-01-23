@@ -1,11 +1,27 @@
-﻿namespace SmartHome.Model
+﻿using System;
+
+namespace SmartHome.Model
 {
-    public class DeviceBase : BaseModel, IDevice
+    public abstract class DeviceBase : BaseModel, IDevice
     {
+        private string _ip;
         private bool _isOnline;
         private string _name;
         private int _x;
         private int _y;
+
+        public string Ip
+        {
+            get
+            {
+                return _ip;
+            }
+            set
+            {
+                _ip = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool IsOnline
         {
@@ -58,5 +74,7 @@
                 OnPropertyChanged();
             }
         }
+
+        public abstract string GetImageName();
     }
 }

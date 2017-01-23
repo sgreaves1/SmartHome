@@ -21,6 +21,10 @@ namespace SmartHome.Model
                 OnPropertyChanged();
             }
         }
-        
+
+        public override string GetImageName()
+        {
+            return IsOn ? @"\Images\LightOn.png" : @"\Images\LightOff.png";
+        }
     }
 }

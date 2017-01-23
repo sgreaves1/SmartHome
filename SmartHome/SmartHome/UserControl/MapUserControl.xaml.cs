@@ -28,8 +28,7 @@ namespace SmartHome.UserControl
         private static void PropertyChangedCallback(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs dependencyPropertyChangedEventArgs)
         {
             ((MapUserControl)dependencyObject).RemoveDevices();
-            ((MapUserControl)dependencyObject).UpdateLights();
-            ((MapUserControl)dependencyObject).UpdateRadios();
+            ((MapUserControl)dependencyObject).UpdateDevices();
         }
 
         public MapUserControl()
@@ -52,84 +51,47 @@ namespace SmartHome.UserControl
             }
         }
 
-        public void UpdateLights()
+        public void UpdateDevices()
         {
             if (FloorModel != null)
             {
-                foreach (var lightModel in FloorModel.Lights)
+                foreach (var deviceModel in FloorModel.Devices)
                 {
                     Image img = new Image();
 
-                    string uri = lightModel.IsOn ? @"\Images\LightOn.png" : @"\Images\LightOff.png";
-
-                    img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
-
-                    StackPanel stackPnl = new StackPanel();
-                    stackPnl.Orientation = Orientation.Horizontal;
-                    stackPnl.Children.Add(img);
-
-                    Button lightButton = new Button();
-                    FloorCanvas.Children.Add(lightButton);
-                    lightButton.Visibility = Visibility.Visible;
-                    lightButton.Content = stackPnl;
-                    lightButton.Width = 50;
-                    lightButton.Height = 50;
-                    lightButton.ToolTip = lightModel.Name;
-                    lightButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
-                    lightButton.CommandParameter = lightModel;
-
-                    lightButton.Style = myResource["RoundedButton"] as Style;
-
-                    Canvas.SetLeft(lightButton, lightModel.X);
-                    Canvas.SetTop(lightButton, lightModel.Y);
-                }
-            }
-        }
-
-        public void UpdateRadios()
-        {
-            if (FloorModel != null)
-            {
-                foreach (var radioModel in FloorModel.Radios)
-                {
-                    Image img = new Image();
+                    string uri = deviceModel.GetImageName();
                     
-                    string uri = @"\Images\Radio.png";
-
                     img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
-
-                    img.Width = 50;
-                    img.Height = 50;
 
                     StackPanel stackPnl = new StackPanel();
                     stackPnl.Orientation = Orientation.Horizontal;
                     stackPnl.Children.Add(img);
 
-                    Button radioButton = new Button();
-                    FloorCanvas.Children.Add(radioButton);
-                    radioButton.Visibility = Visibility.Visible;
-                    radioButton.Content = stackPnl;
-                    radioButton.Width = 50;
-                    radioButton.Height = 50;
-                    radioButton.ToolTip = radioModel.Name;
-                    radioButton.Background = Brushes.Red;
-                    radioButton.BorderBrush = Brushes.Black;
-                    radioButton.BorderThickness = new Thickness(1);
-                    //radioButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
-                    radioButton.CommandParameter = radioButton;
+                    Button deviceButton = new Button();
+                    FloorCanvas.Children.Add(deviceButton);
+                    deviceButton.Visibility = Visibility.Visible;
+                    deviceButton.Content = stackPnl;
+                    deviceButton.Width = 50;
+                    deviceButton.Height = 50;
+                    deviceButton.ToolTip = deviceModel.Name;
+                    deviceButton.Background = Brushes.Red;
+                    deviceButton.BorderBrush = Brushes.Black;
+                    deviceButton.BorderThickness = new Thickness(1);
+                    deviceButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
+                    deviceButton.CommandParameter = deviceModel;
 
-                    radioButton.Style = myResource["RoundedButton"] as Style;
+                    deviceButton.Style = myResource["RoundedButton"] as Style;
 
-                    Canvas.SetLeft(radioButton, radioModel.X);
-                    Canvas.SetTop(radioButton, radioModel.Y);
-                }
+                    Canvas.SetLeft(deviceButton, deviceModel.X);
+                    Canvas.SetTop(deviceButton, deviceModel.Y);
+                }                
             }
         }
-
+        
         private void LightButtonClickExecuteCommand(object parameter)
         {
             ((LightModel) parameter).IsOn = !((LightModel) parameter).IsOn;
-            UpdateLights();
+            UpdateDevices();
         }
 
         public void RemoveDevices()

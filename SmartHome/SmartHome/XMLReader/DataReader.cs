@@ -37,7 +37,7 @@ namespace SmartHome.XMLReader
                             if (y != null)
                                 light.Y = int.Parse(y);
 
-                            floor.Lights.Add(light);
+                            floor.Devices.Add(light);
                         }
 
                         if ((xmlReader.NodeType == XmlNodeType.Element) && (xmlReader.Name == "Radio"))
@@ -51,7 +51,7 @@ namespace SmartHome.XMLReader
                             if (y != null)
                                 radio.Y = int.Parse(y);
 
-                            floor.Radios.Add(radio);
+                            floor.Devices.Add(radio);
                         }
                     }
 
