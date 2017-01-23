@@ -71,7 +71,9 @@
     <Compile Include="enum\IconTypes.cs" />
     <Compile Include="EventArguments\NewDeviceAddedEventArgs.cs" />
     <Compile Include="Model\BaseModel.cs" />
+    <Compile Include="Model\DeviceBase.cs" />
     <Compile Include="Model\FloorModel.cs" />
+    <Compile Include="Model\IDevice.cs" />
     <Compile Include="Model\LightModel.cs" />
     <Compile Include="Model\RadioModel.cs" />
     <Compile Include="UserControl\ControlStripUserControl.xaml.cs">
