@@ -76,5 +76,6 @@ namespace SmartHome.Model
         }
 
         public abstract string GetImageName();
+        public abstract void Activate();
     }
 }

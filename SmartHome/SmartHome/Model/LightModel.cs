@@ -26,5 +26,10 @@ namespace SmartHome.Model
         {
             return IsOn ? @"\Images\LightOn.png" : @"\Images\LightOff.png";
         }
+
+        public override void Activate()
+        {
+            IsOn = !IsOn;
+        }
     }
 }

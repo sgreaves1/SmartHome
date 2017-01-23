@@ -77,7 +77,7 @@ namespace SmartHome.UserControl
                     deviceButton.Background = Brushes.Red;
                     deviceButton.BorderBrush = Brushes.Black;
                     deviceButton.BorderThickness = new Thickness(1);
-                    deviceButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
+                    deviceButton.Command = new DelegateCommand(DeviceButtonClickExecuteCommand);
                     deviceButton.CommandParameter = deviceModel;
 
                     deviceButton.Style = myResource["RoundedButton"] as Style;
@@ -88,9 +88,9 @@ namespace SmartHome.UserControl
             }
         }
         
-        private void LightButtonClickExecuteCommand(object parameter)
+        private void DeviceButtonClickExecuteCommand(object parameter)
         {
-            ((LightModel) parameter).IsOn = !((LightModel) parameter).IsOn;
+            ((IDevice) parameter).Activate();
             UpdateDevices();
         }
 

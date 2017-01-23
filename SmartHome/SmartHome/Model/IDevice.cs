@@ -9,5 +9,6 @@
         int Y { get; set; }
 
         string GetImageName();
+        void Activate();
     }
 }
