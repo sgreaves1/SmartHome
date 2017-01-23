@@ -90,6 +90,9 @@ namespace SmartHome.UserControl
 
                     img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
 
+                    img.Width = 50;
+                    img.Height = 50;
+
                     StackPanel stackPnl = new StackPanel();
                     stackPnl.Orientation = Orientation.Horizontal;
                     stackPnl.Children.Add(img);
@@ -98,10 +101,10 @@ namespace SmartHome.UserControl
                     FloorCanvas.Children.Add(radioButton);
                     radioButton.Visibility = Visibility.Visible;
                     radioButton.Content = stackPnl;
-                    radioButton.Width = 70;
+                    radioButton.Width = 50;
                     radioButton.Height = 50;
                     radioButton.ToolTip = radioModel.Name;
-                    radioButton.Background = Brushes.Bisque;
+                    radioButton.Background = Brushes.Red;
                     radioButton.BorderBrush = Brushes.Black;
                     radioButton.BorderThickness = new Thickness(1);
                     //radioButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
