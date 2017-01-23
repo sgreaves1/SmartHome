@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using SmartHome.Command;
 using SmartHome.Model;
@@ -100,8 +101,18 @@ namespace SmartHome.UserControl
                     radioButton.Width = 70;
                     radioButton.Height = 50;
                     radioButton.ToolTip = radioModel.Name;
+                    radioButton.Background = Brushes.Bisque;
+                    radioButton.BorderBrush = Brushes.Black;
+                    radioButton.BorderThickness = new Thickness(1);
                     //radioButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
                     radioButton.CommandParameter = radioButton;
+
+                    var myResource = new ResourceDictionary
+                    {
+                        Source = new Uri(@"\Resources\ResourceDictionary.xaml", UriKind.Relative)
+                    };
+
+                    radioButton.Style = myResource["RoundedButton"] as Style;
 
                     Canvas.SetLeft(radioButton, radioModel.X);
                     Canvas.SetTop(radioButton, radioModel.Y);

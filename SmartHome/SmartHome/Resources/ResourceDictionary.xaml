@@ -37,4 +37,35 @@
     </Style>
 
 
+    <Style x:Key="RoundedButton" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Ellipse x:Name="ellipse"
+                                 Height="{TemplateBinding Height}"
+                                 Width="{TemplateBinding Width}"
+                                 Fill="{TemplateBinding Background}"
+                                 Stroke="{TemplateBinding BorderBrush}"
+                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" TextElement.FontSize="20" Content="{TemplateBinding Content}"/>
+                        <Grid.ToolTip>
+                            <ToolTip Content="{TemplateBinding ToolTip}" HorizontalOffset="-30" Style="{DynamicResource Blue_Icon_Tooltipstyle}" VerticalOffset="-5" VerticalAlignment="Top" Placement="Top"/>
+                        </Grid.ToolTip>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.7"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.2"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>
