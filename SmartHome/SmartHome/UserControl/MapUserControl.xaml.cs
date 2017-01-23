@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using SmartHome.Command;
 using SmartHome.Model;
 using XamlIcons.Commands;
 
@@ -15,6 +14,8 @@ namespace SmartHome.UserControl
     /// </summary>
     public partial class MapUserControl
     {
+        private ResourceDictionary myResource;
+
         /// <summary>
         /// Dependency Property that backs the FloorModel object
         /// </summary>
@@ -34,6 +35,11 @@ namespace SmartHome.UserControl
         public MapUserControl()
         {
             InitializeComponent();
+
+            myResource = new ResourceDictionary
+            {
+                Source = new Uri(@"\Resources\ResourceDictionary.xaml", UriKind.Relative)
+            };
         }
 
         public FloorModel FloorModel
@@ -72,6 +78,8 @@ namespace SmartHome.UserControl
                     lightButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
                     lightButton.CommandParameter = lightModel;
 
+                    lightButton.Style = myResource["RoundedButton"] as Style;
+
                     Canvas.SetLeft(lightButton, lightModel.X);
                     Canvas.SetTop(lightButton, lightModel.Y);
                 }
@@ -109,11 +117,6 @@ namespace SmartHome.UserControl
                     radioButton.BorderThickness = new Thickness(1);
                     //radioButton.Command = new DelegateCommand(LightButtonClickExecuteCommand);
                     radioButton.CommandParameter = radioButton;
-
-                    var myResource = new ResourceDictionary
-                    {
-                        Source = new Uri(@"\Resources\ResourceDictionary.xaml", UriKind.Relative)
-                    };
 
                     radioButton.Style = myResource["RoundedButton"] as Style;
 
