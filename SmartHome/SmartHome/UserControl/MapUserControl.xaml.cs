@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using SmartHome.Converter;
 using SmartHome.Model;
 using XamlIcons.Commands;
 
@@ -74,11 +76,24 @@ namespace SmartHome.UserControl
                     deviceButton.Width = 50;
                     deviceButton.Height = 50;
                     deviceButton.ToolTip = deviceModel.Name;
-                    deviceButton.Background = Brushes.Red;
+                    if (deviceModel.IsOnline)
+                    {
+                        deviceButton.Background = Brushes.Red;
+                    }
+                    else
+                    {
+                        deviceButton.Background = Brushes.Green;
+                    }
                     deviceButton.BorderBrush = Brushes.Black;
                     deviceButton.BorderThickness = new Thickness(1);
                     deviceButton.Command = new DelegateCommand(DeviceButtonClickExecuteCommand);
                     deviceButton.CommandParameter = deviceModel;
+
+                    BoolToOnlineColourConverter converter = new BoolToOnlineColourConverter();
+                    Binding myBinding = new Binding("IsOnline");
+                    myBinding.Converter = converter;
+                    myBinding.Source = deviceModel;
+                    deviceButton.SetBinding(BackgroundProperty, myBinding);
 
                     deviceButton.Style = myResource["RoundedButton"] as Style;
 
@@ -87,7 +102,7 @@ namespace SmartHome.UserControl
                 }                
             }
         }
-        
+
         private void DeviceButtonClickExecuteCommand(object parameter)
         {
             ((IDevice) parameter).Activate();

@@ -51,6 +51,8 @@ namespace SmartHome.XMLReader
                             if (y != null)
                                 radio.Y = int.Parse(y);
 
+                            radio.Ip = xmlReader.GetAttribute("Ip");
+
                             floor.Devices.Add(radio);
                         }
                     }

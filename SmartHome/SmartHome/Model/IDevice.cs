@@ -1,4 +1,6 @@
-﻿namespace SmartHome.Model
+﻿using System;
+
+namespace SmartHome.Model
 {
     public interface IDevice
     {

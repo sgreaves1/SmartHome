@@ -68,6 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Command\RelayCommand.cs" />
+    <Compile Include="Converter\Class1.cs" />
     <Compile Include="Designer\MainWindowDesignerViewModel.cs" />
     <Compile Include="enum\IconTypes.cs" />
     <Compile Include="EventArguments\NewDeviceAddedEventArgs.cs" />
@@ -171,7 +172,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\TcpServer\TcpServer.csproj">
+      <Project>{9f8d0123-b123-447f-9cc6-74cae4d2ea10}</Project>
+      <Name>TcpServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

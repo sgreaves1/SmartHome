@@ -9,6 +9,7 @@ namespace SmartHome.Model
         private string _name;
         private int _x;
         private int _y;
+        
 
         public string Ip
         {
