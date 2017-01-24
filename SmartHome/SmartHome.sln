@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartHome", "SmartHome\Smar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TcpServer", "TcpServer\TcpServer.csproj", "{9F8D0123-B123-447F-9CC6-74CAE4D2EA10}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakePi", "FakePi\FakePi.csproj", "{1219763F-422A-422F-89A3-278431BE383A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9F8D0123-B123-447F-9CC6-74CAE4D2EA10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F8D0123-B123-447F-9CC6-74CAE4D2EA10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F8D0123-B123-447F-9CC6-74CAE4D2EA10}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1219763F-422A-422F-89A3-278431BE383A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1219763F-422A-422F-89A3-278431BE383A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1219763F-422A-422F-89A3-278431BE383A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1219763F-422A-422F-89A3-278431BE383A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

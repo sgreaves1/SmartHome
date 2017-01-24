@@ -68,7 +68,7 @@
     </ApplicationDefinition>
     <Compile Include="Command\DelegateCommand.cs" />
     <Compile Include="Command\RelayCommand.cs" />
-    <Compile Include="Converter\Class1.cs" />
+    <Compile Include="Converter\BoolToOnlineColourConverter.cs" />
     <Compile Include="Designer\MainWindowDesignerViewModel.cs" />
     <Compile Include="enum\IconTypes.cs" />
     <Compile Include="EventArguments\NewDeviceAddedEventArgs.cs" />
