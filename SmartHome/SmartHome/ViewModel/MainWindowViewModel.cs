@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using SmartHome.Model;
 using SmartHome.XMLReader;
 using TextLoggingPackage;
@@ -19,7 +20,7 @@ namespace SmartHome.ViewModel
 
         public MainWindowViewModel()
         {
-            Logger.ApplicationLoggingLevel = LoggingLevel.Trace;
+            Logger.ApplicationLoggingLevel = (LoggingLevel)Enum.Parse(typeof(LoggingLevel), ConfigurationManager.AppSettings["LoggingLevel"]);
 
             Logger.Log("*********************************", "Smart Home", LoggingLevel.Critical);
             Logger.Log("*********************************", "Smart Home", LoggingLevel.Critical);
