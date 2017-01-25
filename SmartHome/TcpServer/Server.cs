@@ -17,15 +17,17 @@ namespace TcpServer
 
         public Server()
         {
-            WaitForMessage();
+            Task task = new Task(WaitForMessage);
+            task.Start();
         }
 
-        private async void WaitForMessage()
+        async void WaitForMessage()
         {
-            await WaitForMessageAsync();
+            Task task = WaitForMessageAsync();
+            await task;
         }
 
-        async Task<int> WaitForMessageAsync()
+        async Task WaitForMessageAsync()
         {
             int port = 8989;
             IPAddress local = IPAddress.Parse("127.0.0.1");
@@ -33,16 +35,17 @@ namespace TcpServer
             TcpListener serverSocket = new TcpListener(local, port);
             serverSocket.Start();
             TcpClient clientSocket = default(TcpClient);
-            clientSocket = await serverSocket.AcceptTcpClientAsync();
+            clientSocket = serverSocket.AcceptTcpClient();
             int requestCount = 0;
+
+            requestCount = requestCount + 1;
+            NetworkStream networkStream = clientSocket.GetStream();
+            byte[] bytesFrom = new byte[10025];
 
             while ((true))
             {
                 try
                 {
-                    requestCount = requestCount + 1;
-                    NetworkStream networkStream = clientSocket.GetStream();
-                    byte[] bytesFrom = new byte[10025];
                     networkStream.Read(bytesFrom, 0, (int)clientSocket.ReceiveBufferSize);
                     string dataFromClient = Encoding.ASCII.GetString(bytesFrom);
                     dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
@@ -50,11 +53,11 @@ namespace TcpServer
 
                     MessageReceived?.Invoke(this, new MessageReceivedEventArgs(dataFromClient));
 
-                    string serverResponse = "Last Message from client" + dataFromClient;
-                    Byte[] sendBytes = Encoding.ASCII.GetBytes(serverResponse);
-                    networkStream.Write(sendBytes, 0, sendBytes.Length);
-                    networkStream.Flush();
-                    Console.WriteLine(" >> " + serverResponse);
+                    //string serverResponse = "Last Message from client" + dataFromClient;
+                    //Byte[] sendBytes = Encoding.ASCII.GetBytes(serverResponse);
+                    //networkStream.Write(sendBytes, 0, sendBytes.Length);
+                    //networkStream.Flush();
+                    //Console.WriteLine(" >> " + serverResponse);
                 }
                 catch (Exception ex)
                 {

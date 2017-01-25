@@ -45,7 +45,7 @@ namespace SmartHome.ViewModel
                 {
                     if (device.Ip == ((MessageReceivedEventArgs) eventArgs).message.Ip)
                     {
-                        if (((MessageReceivedEventArgs) eventArgs).message.Message == " Connected")
+                        if (((MessageReceivedEventArgs) eventArgs).message.Message == " HeartBeat")
                         {
                             device.IsOnline = true;
                         }
