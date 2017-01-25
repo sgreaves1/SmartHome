@@ -76,6 +76,7 @@ namespace SmartHome.UserControl
                     deviceButton.Width = 50;
                     deviceButton.Height = 50;
                     deviceButton.ToolTip = deviceModel.Name;
+
                     if (deviceModel.IsOnline)
                     {
                         deviceButton.Background = Brushes.Red;
@@ -94,6 +95,13 @@ namespace SmartHome.UserControl
                     myBinding.Converter = converter;
                     myBinding.Source = deviceModel;
                     deviceButton.SetBinding(BackgroundProperty, myBinding);
+
+                    if (deviceModel.GetType() == typeof(RadioModel))
+                    {
+                        Binding toolBind = new Binding("CurrentSong");
+                        toolBind.Source = deviceModel;
+                        deviceButton.SetBinding(ToolTipProperty, toolBind);
+                    }
 
                     deviceButton.Style = myResource["RoundedButton"] as Style;
 

@@ -45,9 +45,16 @@ namespace SmartHome.ViewModel
                 {
                     if (device.Ip == ((MessageReceivedEventArgs) eventArgs).message.Ip)
                     {
-                        if (((MessageReceivedEventArgs) eventArgs).message.Message == " HeartBeat")
+                        string message = ((MessageReceivedEventArgs) eventArgs).message.Message;
+                        if (message == " HeartBeat")
                         {
                             device.IsOnline = true;
+                        }
+
+                        if (message.Contains("<Song>"))
+                        {
+                            string[] words = message.Split(new string[] {"<Song>"}, StringSplitOptions.None);
+                            ((RadioModel)device).CurrentSong = words[1];
                         }
                     }
                 }
