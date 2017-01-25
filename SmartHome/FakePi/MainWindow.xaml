@@ -15,6 +15,9 @@
     <StackPanel>
         <xamlIconLibrary:MaterialDesignIcon Icon="Wifi" Foreground="Green" IconBorderThickness="1" Width="50" Height="50" HorizontalAlignment="Right" Visibility="{Binding IsConnected, Converter={StaticResource InvertableBooleanToVisibilityConverter}}"/>
         <xamlIconLibrary:MaterialDesignIcon Icon="WifiOff" Foreground="Red" IconBorderThickness="1" Width="50" Height="50" HorizontalAlignment="Right" Visibility="{Binding IsConnected, Converter={StaticResource InvertableBooleanToVisibilityConverter}, ConverterParameter=Inverted}"/>
-        <Label Content="side to side" HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+        <Label Content="{Binding Path=SelectedSong}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Skip" Command="{Binding Path=SkipCommand}"/>
+        </StackPanel>
     </StackPanel>
 </Window>
