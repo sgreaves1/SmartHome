@@ -3,24 +3,35 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using FakePi.ViewModel;
 
 namespace FakePi
 {
-    public class FakePiCode
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow
     {
-        public FakePiCode()
+        public MainWindowViewModel ViewModel;
+
+        public MainWindow()
         {
+            InitializeComponent();
+
+            ViewModel = new MainWindowViewModel();
+            DataContext = ViewModel;
+
             Task task = new Task(Heartbeat);
             task.Start();
         }
 
-        static async void Heartbeat()
+        async void Heartbeat()
         {
             Task task = HeartbeatAsync();
             await task;
         }
 
-        static async Task HeartbeatAsync()
+        async Task HeartbeatAsync()
         {
             while (true)
             {
@@ -30,6 +41,7 @@ namespace FakePi
                     Console.WriteLine("Client Started");
                     clientSocket.Connect("127.0.0.1", 8989);
                     Console.WriteLine("Client Socket Program - Server Connected ...");
+                    ViewModel.IsConnected = true;
 
                     while (true)
                     {
@@ -50,7 +62,7 @@ namespace FakePi
                 }
                 catch (Exception)
                 {
-
+                    ViewModel.IsConnected = false;
                 }
 
                 Thread.Sleep(5000);
