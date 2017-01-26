@@ -6,6 +6,8 @@ namespace SmartHome.Model
     {
         private string _currentSong;
 
+        public EventHandler Activated;
+
         public string CurrentSong
         {
             get { return _currentSong; }
@@ -18,7 +20,7 @@ namespace SmartHome.Model
 
         public override void Activate()
         {
-            // do nothing
+            Activated?.Invoke(this, EventArgs.Empty);
         }
 
         public override string GetImageName()

@@ -6,7 +6,7 @@
     <Light Name="Kitchen" X="580" Y="360"/>
     <Light Name="Hall" X="420" Y="180"/>
     <Light Name="Pantry" X="420" Y="360"/>
-    <Radio Name="Radio" X="320" Y="360" Ip="192.168.0.15"/>
+    <Radio Name="Bathroom Radio" X="320" Y="360" Ip="192.168.0.15"/>
   </Floor>
   <Floor Name="First Floor" ImageName="Images\FirstFloor.png"/>
   <Floor Name="Attic" ImageName="Images\Attic.png"/>

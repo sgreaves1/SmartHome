@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Configuration;
+using System.Windows;
+using System.Windows.Input;
 using SmartHome.Model;
+using SmartHome.View;
 using SmartHome.XMLReader;
 using TcpServer;
 using TcpServer.EventArguments;
@@ -20,6 +23,20 @@ namespace SmartHome.ViewModel
             Logger.Log("Floor read from xml file by the name of " + ((DataReaderEventArgs)eventArgs).Floor.Name, "Smart Home", LoggingLevel.Trace);
 
             Floors.Add(((DataReaderEventArgs)eventArgs).Floor);
+
+            foreach (var device in ((DataReaderEventArgs)eventArgs).Floor.Devices)
+            {
+                if (device.GetType() == typeof (RadioModel))
+                {
+                    ((RadioModel)device).Activated += RadioActivated;
+                }
+            }
+        }
+
+        private void RadioActivated(object sender, EventArgs eventArgs)
+        {
+            RadioUI window = new RadioUI((RadioModel)sender);
+            window.ShowDialog();
         }
 
         public MainWindowViewModel()

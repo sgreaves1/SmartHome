@@ -89,8 +89,12 @@
     </Compile>
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\RadioUIViewModel.cs" />
     <Compile Include="View\AddElementWindow.xaml.cs">
       <DependentUpon>AddElementWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RadioUI.xaml.cs">
+      <DependentUpon>RadioUI.xaml</DependentUpon>
     </Compile>
     <Compile Include="XMLReader\DataReader.cs" />
     <Compile Include="XMLReader\DataReaderEventArgs.cs" />
@@ -123,6 +127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\AddElementWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RadioUI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
