@@ -6,7 +6,11 @@
         mc:Ignorable="d"
         Title="{Binding Path=Radio.Name}" Height="100" Width="300"
         Background="Black">
-    <Grid>
+    <StackPanel>
         <Label Foreground="GreenYellow" Content="{Binding Path=Radio.CurrentSong}"/>
-    </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Content="Skip" Command="{Binding Path=SkipCommand}"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

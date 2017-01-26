@@ -35,7 +35,7 @@ namespace SmartHome.ViewModel
 
         private void RadioActivated(object sender, EventArgs eventArgs)
         {
-            RadioUI window = new RadioUI((RadioModel)sender);
+            RadioUI window = new RadioUI((RadioModel)sender, _server);
             window.ShowDialog();
         }
 

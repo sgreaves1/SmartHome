@@ -1,5 +1,7 @@
-﻿using SmartHome.Model;
+﻿using System.Windows;
+using SmartHome.Model;
 using SmartHome.ViewModel;
+using TcpServer;
 
 namespace SmartHome.View
 {
@@ -8,11 +10,11 @@ namespace SmartHome.View
     /// </summary>
     public partial class RadioUI
     {
-        public RadioUI(RadioModel radio)
+        public RadioUI(RadioModel radio, Server server)
         {
             InitializeComponent();
 
-            DataContext = new RadioUIViewModel(radio);
+            DataContext = new RadioUIViewModel(radio, server);
         }
     }
 }

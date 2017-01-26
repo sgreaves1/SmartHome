@@ -17,13 +17,17 @@ namespace FakePi.ViewModel
         private string _selectedSong;
 
         TcpClient clientSocket = new TcpClient();
+        TcpClient clientSocket2 = new TcpClient();
 
         public MainWindowViewModel()
         {
             InitCommands();
 
-            Task task = new Task(Heartbeat);
-            task.Start();
+            Task heartBeatTask = new Task(Heartbeat);
+            heartBeatTask.Start();
+
+            Task readTask = new Task(ReadStream);
+            readTask.Start();
 
             Songs.Add("Side To Side");
             Songs.Add("Trap Queen");
@@ -105,6 +109,12 @@ namespace FakePi.ViewModel
             await task;
         }
 
+        async void ReadStream()
+        {
+            Task task = ReadStreamAsync();
+            await task;
+        }
+
         async Task HeartbeatAsync()
         {
             while (true)
@@ -140,6 +150,38 @@ namespace FakePi.ViewModel
                 }
 
                 Thread.Sleep(5000);
+            }
+        }
+
+        async Task ReadStreamAsync()
+        {
+            while (true)
+            {
+                try
+                {
+                    Console.WriteLine("Client Started");
+                    clientSocket2.Connect("127.0.0.1", 8989);
+                    Console.WriteLine("Client Socket Program - Server Connected ...");
+                    IsConnected = true;
+
+                    while (true)
+                    {
+                        NetworkStream serverStream = clientSocket2.GetStream();
+                        byte[] inStream = new byte[10025];
+                        serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
+                        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                        returndata = returndata.Substring(0, returndata.IndexOf("$"));
+
+                        if (returndata == "Skip")
+                        {
+                            ExecuteSkipCommand();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    int i = 0;
+                }   
             }
         }
     }

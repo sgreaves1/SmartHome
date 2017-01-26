@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Windows.Input;
+using SmartHome.Command;
 
 namespace SmartHome.Model
 {
