@@ -75,7 +75,16 @@ namespace SmartHome.UserControl
                     deviceButton.Content = stackPnl;
                     deviceButton.Width = 50;
                     deviceButton.Height = 50;
-                    deviceButton.ToolTip = deviceModel.Name;
+
+                    StackPanel toolTipStackPanel = new StackPanel();
+                    toolTipStackPanel.Orientation = Orientation.Vertical;
+                    toolTipStackPanel.Children.Add(new Label() {Content = deviceModel.Name, HorizontalAlignment = HorizontalAlignment.Center});
+                    toolTipStackPanel.Children.Add(new Label() {Content = "-----------------"});
+                    toolTipStackPanel.Children.Add(new Label() {Content = deviceModel.Ip, HorizontalAlignment = HorizontalAlignment.Center});
+                    deviceButton.ToolTip = toolTipStackPanel;
+
+                    ToolTip tip = new ToolTip();
+                    tip.Content = toolTipStackPanel;
 
                     if (deviceModel.IsOnline)
                     {
@@ -95,14 +104,7 @@ namespace SmartHome.UserControl
                     myBinding.Converter = converter;
                     myBinding.Source = deviceModel;
                     deviceButton.SetBinding(BackgroundProperty, myBinding);
-
-                    if (deviceModel.GetType() == typeof(RadioModel))
-                    {
-                        Binding toolBind = new Binding("CurrentSong");
-                        toolBind.Source = deviceModel;
-                        deviceButton.SetBinding(ToolTipProperty, toolBind);
-                    }
-
+                    
                     deviceButton.Style = myResource["RoundedButton"] as Style;
 
                     Canvas.SetLeft(deviceButton, deviceModel.X);
