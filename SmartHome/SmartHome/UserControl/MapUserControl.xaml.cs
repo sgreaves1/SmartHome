@@ -59,64 +59,18 @@ namespace SmartHome.UserControl
             {
                 foreach (var deviceModel in FloorModel.Devices)
                 {
-                    Image img = new Image();
-
-                    string uri = deviceModel.GetImageName();
+                    DeviceButton button = new DeviceButton() {DeviceModel = deviceModel, ImageName = deviceModel.GetImageName()};
                     
-                    img.Source = new BitmapImage(new Uri(uri, UriKind.Relative));
+                    button.Visibility = Visibility.Visible;
+                    button.Width = 50;
+                    button.Height = 50;
 
-                    StackPanel stackPnl = new StackPanel();
-                    stackPnl.Orientation = Orientation.Horizontal;
-                    stackPnl.Children.Add(img);
+                    FloorCanvas.Children.Add(button);
 
-                    Button deviceButton = new Button();
-                    FloorCanvas.Children.Add(deviceButton);
-                    deviceButton.Visibility = Visibility.Visible;
-                    deviceButton.Content = stackPnl;
-                    deviceButton.Width = 50;
-                    deviceButton.Height = 50;
-
-                    StackPanel toolTipStackPanel = new StackPanel();
-                    toolTipStackPanel.Orientation = Orientation.Vertical;
-                    toolTipStackPanel.Children.Add(new Label() {Content = deviceModel.Name, HorizontalAlignment = HorizontalAlignment.Center});
-                    toolTipStackPanel.Children.Add(new Label() {Content = "-----------------"});
-                    toolTipStackPanel.Children.Add(new Label() {Content = deviceModel.Ip, HorizontalAlignment = HorizontalAlignment.Center});
-                    deviceButton.ToolTip = toolTipStackPanel;
-
-                    ToolTip tip = new ToolTip();
-                    tip.Content = toolTipStackPanel;
-
-                    if (deviceModel.IsOnline)
-                    {
-                        deviceButton.Background = Brushes.Red;
-                    }
-                    else
-                    {
-                        deviceButton.Background = Brushes.Green;
-                    }
-                    deviceButton.BorderBrush = Brushes.Black;
-                    deviceButton.BorderThickness = new Thickness(1);
-                    deviceButton.Command = new DelegateCommand(DeviceButtonClickExecuteCommand);
-                    deviceButton.CommandParameter = deviceModel;
-
-                    BoolToOnlineColourConverter converter = new BoolToOnlineColourConverter();
-                    Binding myBinding = new Binding("IsOnline");
-                    myBinding.Converter = converter;
-                    myBinding.Source = deviceModel;
-                    deviceButton.SetBinding(BackgroundProperty, myBinding);
-                    
-                    deviceButton.Style = myResource["RoundedButton"] as Style;
-
-                    Canvas.SetLeft(deviceButton, deviceModel.X);
-                    Canvas.SetTop(deviceButton, deviceModel.Y);
+                    Canvas.SetLeft(button, deviceModel.X);
+                    Canvas.SetTop(button, deviceModel.Y);
                 }                
             }
-        }
-
-        private void DeviceButtonClickExecuteCommand(object parameter)
-        {
-            ((IDevice) parameter).Activate();
-            UpdateDevices();
         }
 
         public void RemoveDevices()

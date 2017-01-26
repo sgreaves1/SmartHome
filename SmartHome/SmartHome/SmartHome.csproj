@@ -81,6 +81,9 @@
     <Compile Include="UserControl\ControlStripUserControl.xaml.cs">
       <DependentUpon>ControlStripUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl\DeviceButton.xaml.cs">
+      <DependentUpon>DeviceButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\MapUserControl.xaml.cs">
       <DependentUpon>MapUserControl.xaml</DependentUpon>
     </Compile>
@@ -108,6 +111,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl\ControlStripUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl\DeviceButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
