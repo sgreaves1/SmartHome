@@ -13,6 +13,7 @@ namespace TcpServer
 
         private TcpClient _readSocket;
         private TcpClient _writeSocket = new TcpClient();
+        NetworkStream networkStream; 
 
         public Server()
         {
@@ -39,7 +40,9 @@ namespace TcpServer
                 _readSocket = serverSocket.AcceptTcpClient();
 
                 NetworkStream networkStream = _readSocket.GetStream();
-                byte[] bytesFrom = new byte[10025];
+                byte[] bytesFrom = new byte[70025];
+
+                _writeSocket.Connect("127.0.0.1", 7000);
 
                 while ((true))
                 {
@@ -69,8 +72,7 @@ namespace TcpServer
         {
             try
             {
-                _writeSocket.Connect("127.0.0.1", 7000);
-                NetworkStream networkStream = _writeSocket.GetStream();
+                networkStream = _writeSocket.GetStream();
                 byte[] sendBytes = Encoding.ASCII.GetBytes(message + "$");
                 networkStream.Write(sendBytes, 0, sendBytes.Length);
                 networkStream.Flush();

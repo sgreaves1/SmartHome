@@ -80,7 +80,7 @@ namespace FakePi.Server
                     _readSocket = serverSocket.AcceptTcpClient();
 
                     NetworkStream networkStream = _readSocket.GetStream();
-                    byte[] bytesFrom = new byte[10025];
+                    byte[] bytesFrom = new byte[70025];
 
                     while ((true))
                     {
