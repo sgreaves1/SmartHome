@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using TcpServer.EventArguments;
@@ -15,7 +11,8 @@ namespace TcpServer
     {
         public EventHandler MessageReceived;
 
-        private TcpClient clientSocket;
+        private TcpClient _readSocket;
+        private TcpClient _writeSocket = new TcpClient();
 
         public Server()
         {
@@ -38,19 +35,17 @@ namespace TcpServer
 
                 TcpListener serverSocket = new TcpListener(local, port);
                 serverSocket.Start();
-                clientSocket = default(TcpClient);
-                clientSocket = serverSocket.AcceptTcpClient();
-                int requestCount = 0;
+                _readSocket = default(TcpClient);
+                _readSocket = serverSocket.AcceptTcpClient();
 
-                requestCount = requestCount + 1;
-                NetworkStream networkStream = clientSocket.GetStream();
+                NetworkStream networkStream = _readSocket.GetStream();
                 byte[] bytesFrom = new byte[10025];
 
                 while ((true))
                 {
                     try
                     {
-                        networkStream.Read(bytesFrom, 0, (int) clientSocket.ReceiveBufferSize);
+                        networkStream.Read(bytesFrom, 0, (int)_readSocket.ReceiveBufferSize);
                         string dataFromClient = Encoding.ASCII.GetString(bytesFrom);
                         dataFromClient = dataFromClient.Substring(0, dataFromClient.IndexOf("$"));
                         Console.WriteLine(" >> Data from client - " + dataFromClient);
@@ -63,7 +58,7 @@ namespace TcpServer
                     }
                 }
 
-                clientSocket.Close();
+                _readSocket.Close();
                 serverSocket.Stop();
                 Console.WriteLine(" >> exit");
                 Console.ReadLine();
@@ -74,8 +69,9 @@ namespace TcpServer
         {
             try
             {
-                Byte[] sendBytes = Encoding.ASCII.GetBytes(message);
-                NetworkStream networkStream = clientSocket.GetStream();
+                _writeSocket.Connect("127.0.0.1", 9989);
+                NetworkStream networkStream = _writeSocket.GetStream();
+                byte[] sendBytes = Encoding.ASCII.GetBytes(message + "$");
                 networkStream.Write(sendBytes, 0, sendBytes.Length);
                 networkStream.Flush();
             }

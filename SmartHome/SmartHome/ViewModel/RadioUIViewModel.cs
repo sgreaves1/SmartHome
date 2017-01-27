@@ -37,7 +37,7 @@ namespace SmartHome.ViewModel
 
         private void SkipCommandExecute()
         {
-            _server.SendMessage(Radio.Ip, "Skip" + "$");
+            _server.SendMessage(Radio.Ip, "Skip");
         }
     }
 }

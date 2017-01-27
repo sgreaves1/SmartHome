@@ -15,23 +15,28 @@ namespace FakePi.ViewModel
         private bool _isConnected;
         private ObservableCollection<string> _songs = new ObservableCollection<string>();
         private string _selectedSong;
-
-        TcpClient clientSocket = new TcpClient();
-        TcpClient clientSocket2 = new TcpClient();
-
+        private Server.Server server;
         public MainWindowViewModel()
         {
             InitCommands();
 
-            Task heartBeatTask = new Task(Heartbeat);
-            heartBeatTask.Start();
-
-            Task readTask = new Task(ReadStream);
-            readTask.Start();
+            server = new Server.Server();
+            server.Connected += Connected;
+            server.Disconnected += Disconnected;
 
             Songs.Add("Side To Side");
             Songs.Add("Trap Queen");
             Songs.Add("Lifestyle");
+        }
+
+        private void Disconnected(object sender, EventArgs eventArgs)
+        {
+            IsConnected = false;
+        }
+
+        private void Connected(object sender, EventArgs eventArgs)
+        {
+            IsConnected = true;
         }
 
         public bool IsConnected
@@ -90,99 +95,7 @@ namespace FakePi.ViewModel
 
         private void SongChanged()
         {
-            try
-            {
-                NetworkStream serverStream = clientSocket.GetStream();
-                byte[] outStream = Encoding.ASCII.GetBytes("192.168.0.15: <Song>" + SelectedSong + "$");
-                Console.WriteLine("Song Changed: " + SelectedSong);
-                serverStream.Write(outStream, 0, outStream.Length);
-                serverStream.Flush();
-            }
-            catch (Exception)
-            {
-            }
-        }
-
-        async void Heartbeat()
-        {
-            Task task = HeartbeatAsync();
-            await task;
-        }
-
-        async void ReadStream()
-        {
-            Task task = ReadStreamAsync();
-            await task;
-        }
-
-        async Task HeartbeatAsync()
-        {
-            while (true)
-            {
-                try
-                {
-                    
-                    Console.WriteLine("Client Started");
-                    clientSocket.Connect("127.0.0.1", 8989);
-                    Console.WriteLine("Client Socket Program - Server Connected ...");
-                    IsConnected = true;
-
-                    while (true)
-                    {
-                        NetworkStream serverStream = clientSocket.GetStream();
-                        byte[] outStream = Encoding.ASCII.GetBytes("192.168.0.15: HeartBeat" + "$");
-                        Console.WriteLine("Heartbeat");
-                        serverStream.Write(outStream, 0, outStream.Length);
-                        serverStream.Flush();
-
-                        Thread.Sleep(3000);
-                    }
-
-                    //byte[] inStream = new byte[10025];
-                    //serverStream.Read(inStream, 0, (int) clientSocket.ReceiveBufferSize);
-                    //string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                    //Console.WriteLine(returndata);
-                    //Console.WriteLine("");
-                }
-                catch (Exception)
-                {
-                    IsConnected = false;
-                }
-
-                Thread.Sleep(5000);
-            }
-        }
-
-        async Task ReadStreamAsync()
-        {
-            while (true)
-            {
-                try
-                {
-                    Console.WriteLine("Client Started");
-                    clientSocket2.Connect("127.0.0.1", 8989);
-                    Console.WriteLine("Client Socket Program - Server Connected ...");
-                    IsConnected = true;
-
-                    while (true)
-                    {
-                        NetworkStream serverStream = clientSocket2.GetStream();
-                        byte[] inStream = new byte[10025];
-                        serverStream.Read(inStream, 0, (int)clientSocket.ReceiveBufferSize);
-                        string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                        returndata = returndata.Substring(0, returndata.IndexOf("$"));
-
-                        if (returndata == "Skip")
-                        {
-                            ExecuteSkipCommand();
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    int i = 0;
-                }   
-            }
+            server.SendMessage("192.168.0.15: <Song>" + SelectedSong);
         }
     }
 }
