@@ -69,7 +69,7 @@ namespace TcpServer
         {
             try
             {
-                _writeSocket.Connect("127.0.0.1", 9989);
+                _writeSocket.Connect("127.0.0.1", 7000);
                 NetworkStream networkStream = _writeSocket.GetStream();
                 byte[] sendBytes = Encoding.ASCII.GetBytes(message + "$");
                 networkStream.Write(sendBytes, 0, sendBytes.Length);

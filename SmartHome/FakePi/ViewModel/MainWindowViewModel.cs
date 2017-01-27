@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FakePi.Server;
 using MyLibrary.Command;
 
 namespace FakePi.ViewModel
@@ -23,10 +24,19 @@ namespace FakePi.ViewModel
             server = new Server.Server();
             server.Connected += Connected;
             server.Disconnected += Disconnected;
+            server.DataRecieved += DataRecieved;
 
             Songs.Add("Side To Side");
             Songs.Add("Trap Queen");
             Songs.Add("Lifestyle");
+        }
+
+        private void DataRecieved(object sender, EventArgs eventArgs)
+        {
+            if (((DataRecievedEventArgs) eventArgs).Message == "Skip")
+            {
+                ExecuteSkipCommand();
+            }
         }
 
         private void Disconnected(object sender, EventArgs eventArgs)
