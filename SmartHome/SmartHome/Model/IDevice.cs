@@ -12,5 +12,6 @@ namespace SmartHome.Model
 
         string GetImageName();
         void Activate();
+        void ResetTimer();
     }
 }

@@ -66,6 +66,7 @@ namespace SmartHome.ViewModel
                         if (message == " HeartBeat")
                         {
                             device.IsOnline = true;
+                            device.ResetTimer();
                         }
 
                         if (message.Contains("<Song>"))

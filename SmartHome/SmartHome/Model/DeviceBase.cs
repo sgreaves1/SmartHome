@@ -1,15 +1,27 @@
 ﻿using System;
+using System.Timers;
 
 namespace SmartHome.Model
 {
     public abstract class DeviceBase : BaseModel, IDevice
     {
+        private static Timer aTimer;
         private string _ip;
         private bool _isOnline;
         private string _name;
         private int _x;
         private int _y;
-        
+
+        public DeviceBase()
+        {
+            aTimer = new Timer(5000);
+            aTimer.Elapsed += ATimerOnElapsed;
+        }
+
+        private void ATimerOnElapsed(object sender, ElapsedEventArgs elapsedEventArgs)
+        {
+            IsOnline = false;
+        }
 
         public string Ip
         {
@@ -78,5 +90,10 @@ namespace SmartHome.Model
 
         public abstract string GetImageName();
         public abstract void Activate();
+        public void ResetTimer()
+        {
+            aTimer.Stop();
+            aTimer.Start();
+        }
     }
 }
