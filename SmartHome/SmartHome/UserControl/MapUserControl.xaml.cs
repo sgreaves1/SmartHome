@@ -75,7 +75,7 @@ namespace SmartHome.UserControl
 
         public void RemoveDevices()
         {
-            var buttons = FloorCanvas.Children.OfType<Button>().ToList();
+            var buttons = FloorCanvas.Children.OfType<DeviceButton>().ToList();
             foreach (var button in buttons)
             {
                 FloorCanvas.Children.Remove(button);
