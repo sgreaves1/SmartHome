@@ -10,7 +10,14 @@
         <Label Foreground="GreenYellow" Content="{Binding Path=Radio.CurrentSong}"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="Skip" Command="{Binding Path=SkipCommand}"/>
+
+            <Button Content="Down" ToolTip="Album Down" Command="{Binding Path=DownCommand}">
+            </Button>
+            <Button Content="Back" ToolTip="Skip Back" Command="{Binding Path=BackCommand}"/>
+            <Button Content="Play" ToolTip="Play" Command="{Binding Path=PlayCommand}"/>
+            <Button Content="Skip" ToolTip="Skip" Command="{Binding Path=SkipCommand}"/>
+            <Button Content="Up" ToolTip="Album Up" Command="{Binding Path=UpCommand}"/>
+
         </StackPanel>
     </StackPanel>
 </Window>
