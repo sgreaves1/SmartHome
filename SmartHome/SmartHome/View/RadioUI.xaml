@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xamlIconLibrary="clr-namespace:XamlIconLibrary;assembly=XamlIconLibrary"
         mc:Ignorable="d"
         Title="{Binding Path=Radio.Name}" Height="100" Width="300"
         Background="Black">
@@ -10,13 +11,21 @@
         <Label Foreground="GreenYellow" Content="{Binding Path=Radio.CurrentSong}"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-
-            <Button Content="Down" ToolTip="Album Down" Command="{Binding Path=DownCommand}">
+            <Button ToolTip="Album Down" Command="{Binding Path=DownCommand}" Style="{StaticResource RadioUiButton}">
+                <xamlIconLibrary:GoogleMaterialIcon Icon="ArrowDownward" Style="{StaticResource RadioUiIcon}"/>
             </Button>
-            <Button Content="Back" ToolTip="Skip Back" Command="{Binding Path=BackCommand}"/>
-            <Button Content="Play" ToolTip="Play" Command="{Binding Path=PlayCommand}"/>
-            <Button Content="Skip" ToolTip="Skip" Command="{Binding Path=SkipCommand}"/>
-            <Button Content="Up" ToolTip="Album Up" Command="{Binding Path=UpCommand}"/>
+            <Button ToolTip="Skip Back" Command="{Binding Path=BackCommand}" Style="{StaticResource RadioUiButton}">
+                <xamlIconLibrary:GoogleMaterialIcon Icon="FastRewind" Style="{StaticResource RadioUiIcon}"/>
+            </Button>
+            <Button ToolTip="Play" Command="{Binding Path=PlayCommand}" Style="{StaticResource RadioUiButton}">
+                <xamlIconLibrary:GoogleMaterialIcon Icon="PlayArrow" Style="{StaticResource RadioUiIcon}"/>
+            </Button>
+            <Button ToolTip="Skip" Command="{Binding Path=SkipCommand}" Style="{StaticResource RadioUiButton}">
+                <xamlIconLibrary:GoogleMaterialIcon Icon="FastForward" Style="{StaticResource RadioUiIcon}"/>
+            </Button>
+            <Button ToolTip="Album Up" Command="{Binding Path=UpCommand}" Style="{StaticResource RadioUiButton}">
+                <xamlIconLibrary:GoogleMaterialIcon Icon="ArrowUpward" Style="{StaticResource RadioUiIcon}"/>
+            </Button>
 
         </StackPanel>
     </StackPanel>
