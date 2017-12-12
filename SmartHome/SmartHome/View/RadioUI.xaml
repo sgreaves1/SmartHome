@@ -8,7 +8,7 @@
         Title="{Binding Path=Radio.Name}" Height="100" Width="300"
         Background="Black">
     <StackPanel>
-        <Label Foreground="GreenYellow" Content="{Binding Path=Radio.CurrentSong}"/>
+        <Label Foreground="GreenYellow" Content="{Binding Path=Radio.CurrentSong}" HorizontalAlignment="Center"/>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
             <Button ToolTip="Album Down" Command="{Binding Path=DownCommand}" Style="{StaticResource RadioUiButton}">

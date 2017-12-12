@@ -67,13 +67,27 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <Style x:Key="MyFocusVisualStyle">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Control}">
+                    <Grid Margin="3 2">
+                        <Rectangle Name="r1" StrokeThickness="1" Stroke="Red" StrokeDashArray="2 2"/>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="RadioUiButton" TargetType="{x:Type Button}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="Lime"/>
+        <Setter Property="FocusVisualStyle" Value="{StaticResource MyFocusVisualStyle}"/>
     </Style>
-
+    
     <Style x:Key="RadioUiIcon" TargetType="{x:Type xamlIconLibrary:GoogleMaterialIcon}">
         <Setter Property="Width" Value="25"/>
         <Setter Property="Height" Value="25"/>

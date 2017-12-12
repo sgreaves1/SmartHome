@@ -22,7 +22,8 @@ namespace SmartHome.Model
 
         public override void Activate()
         {
-            Activated?.Invoke(this, EventArgs.Empty);
+            if (IsOnline)
+                Activated?.Invoke(this, EventArgs.Empty);
         }
 
         public override string GetImageName()
